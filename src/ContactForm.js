@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, DatePicker, Select, Col, Radio, Icon, Button } from 'antd';
+import { Form, Input, DatePicker, Select, Col, Radio, Icon, Button, notification } from 'antd';
 import uuid from 'uuid/v4';
 import moment from 'moment';
 import './ContactForm.css';
@@ -23,8 +23,16 @@ class ContactForm extends Component {
           birthday: values.birthday ? values.birthday.format('M/D/YYYY') : undefined,
           age: values.birthday ? moment().diff(values.birthday, 'years') : undefined,
           middleinitial: values.middleinitial ? values.middleinitial.toUpperCase() : undefined,
+          zipcode: values.zipcode ? parseInt(values.zipcode) : undefined,
+          ccNumber: values.ccNumber ? parseInt(values.ccNumber) : undefined,
+          ccv2: values.ccv2 ? parseInt(values.ccv2) : undefined,
           ccExpires: values.ccExpires ? values.ccExpires.format('M/YYYY') : undefined,
           state: values.state ? values.state.toUpperCase() : undefined,
+          phoneCountryCode: values.phoneCountryCode ? parseInt(values.phoneCountryCode) : undefined,
+          westernUnionMTCN: values.westernUnionMTCN ? parseInt(values.westernUnionMTCN) : undefined,
+          moneyGramMTCN: values.moneyGramMTCN ? parseInt(values.moneyGramMTCN) : undefined,
+          latitude: values.latitude ? parseFloat(values.latitude) : undefined,
+          longitude: values.longitude ? parseFloat(values.longitude) : undefined,
           guid: uuid()
         });
 
@@ -40,18 +48,33 @@ class ContactForm extends Component {
 
         console.log('Received values of form: ', req);
 
-        fetch('https://sibi-db-tadscritch.herokuapp.com/contacts', req).then((res) => {
-          console.log(res);
-          // return res.json();
+        //https://sibi-db-tadscritch.herokuapp.com
+
+        fetch('http://localhost:4000/contacts', req).then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            res.json().then((data)=> {
+              this.openNotificationWithIcon('error', data.message);
+            });
+            throw new Error();
+          }
         }).then((data) => {
           this.setState({ isCreating: false });
           this.props.form.resetFields();
         }).catch((err) => {
-          console.log(err.message);
+          this.setState({ isCreating: false });
         });
       }
     });
   }
+
+  openNotificationWithIcon = (type, message) => {
+    notification[type]({
+      message: 'Server Error',
+      description: message,
+    });
+  };
 
   checkConfirm = (rule, value, callback) => {
     const form = this.props.form;
