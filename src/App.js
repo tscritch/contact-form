@@ -13,6 +13,7 @@ class App extends Component {
         <Layout>
           <Header>
             <img src={logo} style={{ height: "90%" }} alt="logo"></img>
+            <div className="link"><a href="https://sibi-webview-tadscritch.herokuapp.com/"><p>View All Contacts</p></a></div>
           </Header>
           <Content>
             <ContactForm></ContactForm>
