@@ -1,0 +1,9 @@
+.ContactForm {
+  width: 100%;
+}
+
+.ContactForm h1 {
+  font-weight: bold;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
