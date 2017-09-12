@@ -46,11 +46,7 @@ class ContactForm extends Component {
           })
         };
 
-        console.log('Received values of form: ', req);
-
-        //https://sibi-db-tadscritch.herokuapp.com
-
-        fetch('http://localhost:4000/contacts', req).then((res) => {
+        fetch('https://sibi-db-tadscritch.herokuapp.com', req).then((res) => {
           if (res.ok) {
             return res.json();
           } else {
