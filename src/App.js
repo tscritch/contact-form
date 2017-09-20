@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout, Icon } from 'antd';
 import ContactForm from './ContactForm';
 import logo from './sibi.png';
 import './App.css';
@@ -13,7 +13,7 @@ class App extends Component {
         <Layout>
           <Header>
             <img src={logo} style={{ height: "90%" }} alt="logo"></img>
-            <div className="link"><a href="https://sibi-webview-tadscritch.herokuapp.com/"><p>View All Contacts</p></a></div>
+            <div className="link"><a href="https://sibi-webview-tadscritch.herokuapp.com/"><p>View Contacts</p><div className="arrow"><Icon type="arrow-right"></Icon></div></a></div>
           </Header>
           <Content>
             <ContactForm></ContactForm>

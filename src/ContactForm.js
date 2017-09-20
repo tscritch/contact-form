@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, DatePicker, Select, Col, Radio, Icon, Button, notification } from 'antd';
+import { Form, Input, DatePicker, Select, Col, Radio, Button, notification } from 'antd';
 import uuid from 'uuid/v4';
 import moment from 'moment';
 import './ContactForm.css';
